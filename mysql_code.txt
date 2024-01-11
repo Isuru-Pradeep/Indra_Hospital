@@ -1,0 +1,478 @@
+DROP DATABASE indra_hospital;
+CREATE DATABASE indra_hospital;
+
+
+
+CREATE TABLE `indra_hospital`.`admin`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+
+CREATE TABLE `indra_hospital`.`security`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    `Rank` VARCHAR(50) NOT NULL,
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+
+CREATE TABLE `indra_hospital`.`receiptionist`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+CREATE TABLE `indra_hospital`.`doctor`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    `Classify` VARCHAR(50) NOT NULL,
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+CREATE TABLE `indra_hospital`.`pharmacist`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+CREATE TABLE `indra_hospital`.`cleaner`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+
+CREATE TABLE `indra_hospital`.`driver`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `Number_Plate` VARCHAR(50) NOT NULL,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+CREATE TABLE `indra_hospital`.`nurse`(
+    `E_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_Name` VARCHAR(50) NOT NULL,
+    `D_ID` INT,
+    `Ward_ID` INT,
+    `First_Name` VARCHAR(50) NOT NULL,
+    `Last_Name` VARCHAR(50) NOT NULL,
+    `First_Day` DATE NOT NULL,
+    `Working_Hours` INT NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Birthday` DATE NOT NULL,
+    `Basic_Salary` DECIMAL(10, 2) NOT NULL,
+    `OT_Salary` DECIMAL(10, 2),
+    `Other_Adition` DECIMAL(10, 2),
+    `Class`  VARCHAR(50) NOT NULL,
+    PRIMARY KEY(`E_ID`,`User_Name`)
+);
+
+CREATE TABLE bill(
+    Bill_ID INT NOT NULL AUTO_INCREMENT,
+    E_ID INT,
+    Time TIME DEFAULT NOW(),
+    Date DATE DEFAULT NOW(),
+    Doctor_Charge DECIMAL(10,2) NOT NULL,
+    Hopital_Charge DECIMAL(10,2) NOT NULL,
+    Drug_Charge DECIMAL(10,2) NOT NULL,
+    Tax DECIMAL(10,2),
+    Discount DECIMAL(10,2),
+    PRIMARY KEY(Bill_ID)
+);
+
+
+CREATE TABLE recipt (
+    Recipt_ID INT NOT NULL AUTO_INCREMENT,
+    Bill_ID INT,
+    Decription VARCHAR(50),
+    Doctor_Charge DECIMAL(10,2) NOT NULL,
+    Hopital_Charge DECIMAL(10,2) NOT NULL,
+    Drug_Charge DECIMAL(10,2) NOT NULL,
+    Tax DECIMAL(10,2),
+    Discount DECIMAL(10,2),
+    Total_Bill DECIMAL(10,2),
+    Time TIME DEFAULT NOW(),
+    Date DATE DEFAULT NOW(),
+    PRIMARY KEY(Recipt_ID)
+);
+
+
+CREATE TABLE appointment (
+    APPOINTMENT_ID INT NOT NULL AUTO_INCREMENT,
+    User_Name VARCHAR(50),
+    DOC_EMP_ID INT,
+    RECEI_EMP_ID INT,
+    Decription VARCHAR(50),
+    Time TIME DEFAULT NOW(),
+    Date DATE DEFAULT NOW(),
+    PRIMARY KEY(APPOINTMENT_ID)
+);
+
+CREATE TABLE token (
+    Token_ID INT NOT NULL AUTO_INCREMENT,
+    APPOINTMENT_ID INT,
+    DOC_EMP_ID INT,
+    Token_number INT,
+    Decription VARCHAR(50),
+    Time TIME DEFAULT NOW(),
+    Date DATE DEFAULT NOW(),
+    PRIMARY KEY(Token_ID)
+);
+
+
+
+CREATE TABLE patient (
+    P_ID INT NOT NULL AUTO_INCREMENT,
+    User_Name VARCHAR(50),
+    APPOINTMENT_ID INT,
+    Ward_ID INT,
+    First_Name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    Password VARCHAR(50),
+    Birthday DATE,
+    email VARCHAR(50),
+    sex VARCHAR(50),
+    PRIMARY KEY(P_ID,User_Name)
+);
+
+
+
+CREATE TABLE ward (
+    Ward_ID INT NOT NULL AUTO_INCREMENT,
+    DOC_ID INT,
+    Name VARCHAR(50),
+    bed INT,
+    Description VARCHAR(50),
+    Filled_beds INT
+);
+
+CREATE TABLE report (
+    R_ID INT NOT NULL AUTO_INCREMENT,
+    User_Name VARCHAR(50),
+    Ward_ID INT,
+    DOC_EMP_ID INT,
+    Description VARCHAR(50),
+    PRIMARY KEY(R_ID)
+);
+
+CREATE TABLE prescription (
+    Prescription_ID INT NOT NULL AUTO_INCREMENT,
+    User_Name VARCHAR(50),
+    DOC_EMP_ID INT,
+    First_Name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    Description VARCHAR(50),
+    P_Age INT,
+    PRIMARY KEY(Prescription_ID)
+);
+
+CREATE TABLE cleans (
+    CLEA_EMP_ID INT,
+    Ward_ID INT,
+    PRIMARY KEY(CLEA_EMP_ID,Ward_ID)
+);
+
+CREATE TABLE drug (
+    Drug_ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(50),
+    QTY INT,
+    Description VARCHAR(50),
+    PRIMARY KEY(Drug_ID)
+);
+
+CREATE TABLE issues (
+    Prescription_ID INT,
+    Drug_ID INT,
+    PRIMARY KEY(Prescription_ID,Drug_ID)
+);
+
+CREATE TABLE vehicle (
+    Number_Plate VARCHAR(50),
+    Model VARCHAR(50),
+    Brand VARCHAR(50),
+    Availability VARCHAR(50),
+    PRIMARY KEY(Number_Plate)
+);
+
+CREATE TABLE controls (
+    PHA_EMP_ID INT,
+    DRUG_ID INT,
+    PRIMARY KEY(PHA_EMP_ID,DRUG_ID)
+);
+
+
+CREATE TABLE department (
+    D_ID INT NOT NULL AUTO_INCREMENT,
+    D_Name VARCHAR(50),
+    Phone_Number VARCHAR(50),
+    PRIMARY KEY(D_ID)
+);
+
+
+CREATE TABLE guards (
+    D_ID INT,
+    E_ID INT,
+    PRIMARY KEY(D_ID,E_ID)
+);
+
+
+
+CREATE TABLE admin_employee_phone_num (
+    E_ID INT,
+    Phone_Num VARCHAR(50),
+    PRIMARY KEY(E_ID,Phone_Num)
+);
+
+
+CREATE TABLE doctor_employee_phone_num (
+    E_ID INT,
+    Phone_Num VARCHAR(50),
+    PRIMARY KEY(E_ID,Phone_Num)
+);
+CREATE TABLE nurse_employee_phone_num (
+    E_ID INT,
+    Phone_Num VARCHAR(50),
+    PRIMARY KEY(E_ID,Phone_Num)
+);
+
+CREATE TABLE receptionist_employee_phone_num (
+    E_ID INT,
+    Phone_Num VARCHAR(50),
+    PRIMARY KEY(E_ID,Phone_Num)
+);
+CREATE TABLE driver_employee_phone_num (
+    E_ID INT,
+    Phone_Num VARCHAR(50),
+    PRIMARY KEY(E_ID,Phone_Num)
+);
+
+CREATE TABLE cleaner_employee_phone_num (
+    E_ID INT,
+    Phone_Num VARCHAR(50),
+    PRIMARY KEY(E_ID,Phone_Num)
+);
+
+CREATE TABLE pharmacist_employee_phone_num (
+    E_ID INT,
+    Phone_Num VARCHAR(50),
+    PRIMARY KEY(E_ID,Phone_Num)
+);
+
+CREATE TABLE admin_employee_address (
+    E_ID INT,
+    Address VARCHAR(50),
+    PRIMARY KEY(E_ID,Address)
+);
+
+CREATE TABLE doctor_employee_address (
+    E_ID INT,
+    Address VARCHAR(50),
+    PRIMARY KEY(E_ID,Address)
+);
+
+CREATE TABLE nurse_employee_address (
+    E_ID INT,
+    Address VARCHAR(50),
+    PRIMARY KEY(E_ID,Address)
+);
+
+CREATE TABLE receptionist_employee_address (
+    E_ID INT,
+    Address VARCHAR(50),
+    PRIMARY KEY(E_ID,Address)
+);
+
+CREATE TABLE driver_employee_address (
+    E_ID INT,
+    Address VARCHAR(50),
+    PRIMARY KEY(E_ID,Address)
+);
+
+CREATE TABLE cleaner_employee_address (
+    E_ID INT,
+    Address VARCHAR(50),
+    PRIMARY KEY(E_ID,Address)
+);
+
+CREATE TABLE pharmacist_employee_address (
+    E_ID INT,
+    Address VARCHAR(50),
+    PRIMARY KEY(E_ID,Address)
+);
+
+
+ALTER TABLE admin_employee_phone_num
+ADD CONSTRAINT admin_employee_phone_num
+FOREIGN KEY (E_ID)
+REFERENCES admin(E_ID);
+
+ALTER TABLE doctor_employee_phone_num
+ADD CONSTRAINT doctor_employee_phone_num
+FOREIGN KEY (E_ID)
+REFERENCES doctor(E_ID);
+
+ALTER TABLE nurse_employee_phone_num 
+ADD CONSTRAINT nurse_employee_phone_num 
+FOREIGN KEY (E_ID)
+REFERENCES nurse(E_ID);
+
+ALTER TABLE receptionist_employee_phone_num 
+ADD CONSTRAINT receptionist_employee_phone_num 
+FOREIGN KEY (E_ID)
+REFERENCES receiptionist(E_ID);
+
+ALTER TABLE driver_employee_phone_num
+ADD CONSTRAINT driver_employee_phone_num
+FOREIGN KEY (E_ID)
+REFERENCES driver(E_ID);
+
+ALTER TABLE cleaner_employee_phone_num
+ADD CONSTRAINT cleaner_employee_phone_num
+FOREIGN KEY (E_ID)
+REFERENCES cleaner(E_ID);
+
+ALTER TABLE pharmacist_employee_phone_num
+ADD CONSTRAINT pharmacist_employee_phone_num
+FOREIGN KEY (E_ID)
+REFERENCES pharmacist(E_ID);
+
+
+ALTER TABLE admin_employee_address
+ADD CONSTRAINT admin_employee_address
+FOREIGN KEY (E_ID)
+REFERENCES admin(E_ID);
+
+ALTER TABLE doctor_employee_address
+ADD CONSTRAINT doctor_employee_address
+FOREIGN KEY (E_ID)
+REFERENCES doctor(E_ID);
+
+ALTER TABLE nurse_employee_address
+ADD CONSTRAINT nurse_employee_address
+FOREIGN KEY (E_ID)
+REFERENCES nurse(E_ID);
+
+ALTER TABLE receptionist_employee_address
+ADD CONSTRAINT receptionist_employee_address
+FOREIGN KEY (E_ID)
+REFERENCES receiptionist(E_ID);
+
+ALTER TABLE driver_employee_address
+ADD CONSTRAINT driver_employee_address
+FOREIGN KEY (E_ID)
+REFERENCES driver(E_ID);
+
+ALTER TABLE cleaner_employee_address
+ADD CONSTRAINT cleaner_employee_address
+FOREIGN KEY (E_ID)
+REFERENCES cleaner(E_ID);
+
+ALTER TABLE pharmacist_employee_address
+ADD CONSTRAINT pharmacist_employee_address
+FOREIGN KEY (E_ID)
+REFERENCES pharmacist(E_ID);
+
+
+
+
+ALTER TABLE token CHANGE `Time` `Time` TIME NOT NULL DEFAULT CURRENT_TIME;
+ALTER TABLE token CHANGE `Date` `Date` DATE NOT NULL DEFAULT CURRENT_DATE;
+ALTER TABLE appointment CHANGE `Time` `Time` TIME NOT NULL DEFAULT CURRENT_TIME, CHANGE `Date` `Date` DATE NOT NULL DEFAULT CURRENT_DATE;
+ALTER TABLE recipt CHANGE `Time` `Time` TIME NOT NULL DEFAULT CURRENT_TIME, CHANGE `Date` `Date` DATE NOT NULL DEFAULT CURRENT_DATE;
+CREATE TRIGGER `set_token_number` BEFORE INSERT ON `token` FOR EACH ROW BEGIN SET NEW.Token_number = (SELECT IFNULL(MAX(Token_number), 0) + 1 FROM token); END;
+CREATE TRIGGER `reset_token_number_trigger` BEFORE INSERT ON `token` FOR EACH ROW BEGIN DECLARE current_hour INT; SELECT HOUR(NOW()) INTO current_hour; IF current_hour <= 0 THEN SET NEW.Token_number = 1; END IF; END;
+
+
+
+
+
+
+
+
+INSERT INTO `admin` (`E_ID`, `User_Name`, `D_ID`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`) VALUES (NULL, 'admin', '1', 'Isuru', 'Pradeep', '2016-03-01', '6', 'admin', '1998-03-10', '50000', '35000', '45000');
+INSERT INTO `admin` (`User_Name`, `D_ID`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`) VALUES ('admin2', '1', 'Pradeep', 'Bandara', '2017-05-11', '5', 'admin', '1998-03-10', '40000', '38000', '49000');
+INSERT INTO `admin` (`User_Name`, `D_ID`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`) VALUES ('admin3', '1', 'Bandara', 'Gunasinghe', '2018-07-21', '3', 'admin', '1998-03-10', '20000', '18000', '67000');
+INSERT INTO `patient` (`P_ID`, `User_Name`, `APPOINTMENT_ID`, `Ward_ID`, `First_Name`, `Last_Name`, `Password`, `Birthday`, `email`, `sex`) VALUES (NULL, 'charith', '1', '1', 'charitha', 'adikari', 'charitha', '1999-7-31', 'charithabimsara123@gmail.com', 'male');
+INSERT INTO `patient` (`User_Name`, `APPOINTMENT_ID`, `Ward_ID`, `First_Name`, `Last_Name`, `Password`, `Birthday`, `email`, `sex`) VALUES ('viraj', '2', '1', 'viraj', 'prabuddika', 'viraj', '1998-05-07', 'virajprabuddika123@gmail.com', 'male');
+INSERT INTO `department` (`D_Name`, `Phone_Number`) VALUES ('Out Patient Department', '0123456789'),('Surgical Derpartment', '1234567890'),('Neonatal Intensive Care Unit', '2345678901'),('Pediatrics Department', '3456789012'),('Oncology Department', '4567890123'),('Radiology Department', '2345678901'),('Sterlization Department', '5678901234'),('ICU', '7890123456'),('Cleaning Unit', '7890123456'),('Receiption Unit', '8901234567'),('Security Unit', '2345678901'),('Vehicle Unit', '9012345678'),('Pharmacist Unit', '0234567891'),('Admin Department', '2034567891');
+INSERT INTO `doctor` (`User_Name`, `D_ID`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`, `Classify`) VALUES ('sampath', '2', 'sampath', 'kumara', '2001-05-30', '4', 'sampath', '1957-01-20', '56000', '30000', '45000', 'surgen');
+INSERT INTO `nurse` (`User_Name`, `D_ID`, `Ward_ID`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`, `Class`) VALUES ('pushpa', '4', '3', 'pushpa', 'ramyani', '2005-02-08', '6', 'pushpa', '1963-07-12', '65000', '2000', '60000', 'class 1');
+INSERT INTO `ward` (`DOC_ID`, `Name`, `beds`, `Description`, `Filled_beds`) VALUES ('1', 'CG1', '20' , 'This is female childern ward', '0');
+INSERT INTO `receiptionist` (`User_Name`, `D_ID`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`) VALUES ('ishara', '1', 'ishara', 'sewmini', '2023-02-04', '5', 'ishara', '2000-08-08', '60000', '2000', '2500');
+INSERT INTO `vehicle` (`Number_Plate`, `Model`, `Brand`, `Availability`) VALUES ('CP-LA-0456', 'Wagan', 'Benz', 'Available');
+INSERT INTO `vehicle` (`Number_Plate`, `Model`, `Brand`, `Availability`) VALUES ('CP-PA-4562', 'HIACE', 'TOYOTA', 'Available');
+INSERT INTO `driver` (`User_Name`, `D_ID`, `Number_Plate`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`) VALUES ('sachindra', 1, 'CP-PA-4562', 'sachindra', 'dilshan', '2005-08-14', '6', 'sachindra', '1997-04-02', '50000', '30000', '10000');
+INSERT INTO `cleaner` (`User_Name`, `D_ID`, `First_Name`, `Last_Name`, `First_Day`, `Working_Hours`, `Password`, `Birthday`, `Basic_Salary`, `OT_Salary`, `Other_Adition`) VALUES ('rajitha', '1', 'rajitha', 'malalasekara', '2008-06-02', '5', 'rajitha', '1999-01-05', '65000', '2500', '6000');
+INSERT INTO drug (Name, QTY, Description) VALUES ('Alprazolam tab I.P 0.25mg', 200, 'Preanaesthic medications'),('Alprazolam tab I.P 0.5mg', 100, 'Preanaesthic medications'),('Alprazolam tab I.P 1mg', 75, 'Preanaesthic medications');
